@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>Foodspirations</title>
+
+        <!-- CSS -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <!-- Blog -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+        <!-- JavaScript -->
+        <!-- jQuery -->
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    </head>
+    <style>
+        .navbar-header{
+            background-color:black;
+            position:fixed;
+            top:0;
+            width:100%;
+            left:0px;
+        }
+    </style>
+    <body>
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <ul class="topnav" id="myTopnav">
+                        <style>
+                        li
+                        {
+                            float: left;
+                        }
+                        
+                        .topnav {
+                            list-style-type: none;
+                            display:table;
+                            margin:0 auto;
+                        }
+                        </style>
+                        <li><a class="navbar-brand" href="{{ url_for('homepage') }}">Home</a></li>
+                        <li>&nbsp &nbsp &nbsp &nbsp</li>
+                        <li><a class="navbar-brand" href="{{ url_for('american_tab') }}">American</a></li>
+                        <li>&nbsp &nbsp &nbsp &nbsp</li>
+                        <li><a class="navbar-brand" href="{{ url_for('asian_tab') }}">Asian</a></li>
+                        <li>&nbsp &nbsp &nbsp &nbsp</li>
+                        <li><a class="navbar-brand" href="{{ url_for('greek_tab') }}">Greek</a></li>
+                        <li>&nbsp &nbsp &nbsp &nbsp</li>
+                        <li><a class="navbar-brand" href="{{ url_for('french_tab') }}">French</a></li>
+                        <li>&nbsp &nbsp &nbsp &nbsp</li>
+                        <li><a class="navbar-brand" href="{{ url_for('thai_tab') }}">Thai</a></li>
+                        <li>&nbsp &nbsp &nbsp &nbsp</li>
+                        <li><a class="navbar-brand" href="{{ url_for('mediterranean_tab') }}">Mediterranean</a></li>
+                        <li>&nbsp &nbsp &nbsp &nbsp</li>
+                        <li><a class="navbar-brand" href="{{ url_for('italian_tab') }}">Italian</a></li>
+                        <li>&nbsp &nbsp &nbsp &nbsp</li>
+                        <li><a class="navbar-brand" href="{{ url_for('indian_tab') }}">Indian</a></li>
+                        <li>&nbsp &nbsp &nbsp &nbsp</li>
+                        <li><a class="navbar-brand" href="{{ url_for('mexican_tab') }}">Mexican</a></li>
+                        <li>&nbsp &nbsp &nbsp &nbsp</li>
+                        <li><a class="navbar-brand" href="{{ url_for('other_tab') }}">Other</a></li>
+                    </ul>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="container">
+            {% block content %}{% endblock %}
+        </div>
+    </body>
+</html>

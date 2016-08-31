@@ -1,0 +1,106 @@
+{% macro render_entry(post, name, authenticate, user_likes) %}
+<head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="css/display_posts.css">
+    <style type="text/css">
+        .row{
+            border-bottom-style: solid;
+            border-width: 5px;
+        }
+        
+        .col-md-2{
+            padding-top: 20px;
+            padding-bottom: 10px;
+        }
+        
+        .col-md-10{
+            left: 180px;
+            max-width: 57em;
+            top: -1px;
+        }
+        
+        .content{
+            height: 19em;
+        }
+        
+        .food-image{
+            border: solid;
+            border-width:5px;
+        }
+        
+        .list-unstyled{
+            padding-top:5px;
+            font-size: 20px;
+        }
+        
+        .ingredients {
+            white-space: pre-wrap;
+        }
+        
+        .likes {
+            float: right;
+        }
+    </style>
+</head>
+
+<div class="row">
+    <div class="col-md-2 text-right metadata">
+        <img src= "{{ url_for('uploaded_file', filename=post.pic_filename) }}" class="food-image" style="width:350px;height:270px;">
+        <ul class="list-unstyled">
+            {% if name == post.author.username %}
+            <li>&nbsp</li>
+            <li>
+                <a href="{{ url_for('edit_post_get', id=post.id) }}">Edit</a>
+            </li>
+            <li>&nbsp &nbsp &nbsp &nbsp &nbsp &nbsp</li>
+            <li>
+                <a href="{{ url_for('delete_post_get', id=post.id) }}">Delete</a>
+            </li>
+            {% endif %}
+        </ul>
+    </div>
+    <div class="col-md-10">
+        <div class="content">
+            <h1>
+                <a href="{{ url_for('view_post', id=post.id) }}">{{post.name}}</a>
+            </h1>
+            <p><i>by {{ post.author.username }}</i></p>
+            <h4><b>
+                INGREDIENTS:
+            </b></h4>
+            <h5 class="ingredients">{{post.ingredients}}</h5>
+            <p>. . .</p>
+        </div>
+        <h6 class="likes"><b>
+            {%if authenticate%}
+            
+            {% set exists = [] %}
+            
+            {%for like in user_likes%}
+            {%if post.id == like.post_id%}
+            {% if exists.append(1) %}
+            {%endif%}
+                <a href="{{ url_for('unliked_post', id=post.id) }}"><input type="button" value="{{post.likes}} Unlike" style="float: right;"><font face="Times New Roman"></font></button></a>
+            {%endif%}
+            {%endfor%}
+            
+            {%if not exists%}
+            {%if post.likes != 1%}    
+                <a href="{{ url_for('liked_post', id=post.id) }}"><input type="button" value="{{post.likes}} Likes" style="float: right;"><font face="Times New Roman"></font></button></a>
+            {%else%}
+                <a href="{{ url_for('liked_post', id=post.id) }}"><input type="button" value="{{post.likes}} Like" style="float: right;"><font face="Times New Roman"></font></button></a>
+            {%endif%}
+            {%endif%}
+
+            {%else%}
+            
+            {%if post.likes == 1%}
+            {{post.likes}} Like
+            {%else%}
+            {{post.likes}} Likes
+            {%endif%}
+            {%endif%}
+        </b></h6>
+    </div>
+</div>
+{% endmacro %}

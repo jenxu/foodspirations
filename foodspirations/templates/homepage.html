@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{%block content%}
+<div style='position:absolute;z-index:0;left:0;top:0;width:100%;height:100%'>
+  <body background= "http://fishbonespierandgrill.com/wp-content/uploads/2016/03/background-food.jpg" style ='width:100%'>
+  <center>
+      {%if authenticate%}
+      <header class="masthead" style="margin-top: 200px">
+    	<p class="masthead-intro"><font face="papyrus" size="5"><big><b>Welcome to</b></big></font></p>
+    	<h1 class="masthead-heading"><font color="green" face="papyrus" size="7"><big><big><big><big><b>FOODSPIRATIONS</b></big></big></big></big></font></h1>
+        <p class="masthead-intro"><font face="papyrus" size="5"><big><b>Welcome Back {{name}}!</b></big></font></p>
+        <div class="add" style="margin-top:30px">
+            <a href="{{ url_for('add_post_get') }}"><input type="button" value="Add Post" style="width:150px;height:50px; background-color: #000000; margin:50px;"><font face="Times New Roman"></font></button></a>
+            <a href="{{ url_for('logout') }}"><input type="button" value="Logout" style="width:150px;height:50px; background-color: #000000; margin:50px"><font face="Times New Roman"></font></button></a>
+        </div>
+      </header>
+     {%else%}
+      <header class="masthead" style="margin-top: 200px">
+    	<p class="masthead-intro"><font face="papyrus" size="5"><big><b>Welcome to</b></big></font></p>
+    	<h1 class="masthead-heading"><font color="green" face="papyrus" size="7"><big><big><big><big><b>FOODSPIRATIONS</b></big></big></big></big></font></h1>
+        <p class="masthead-intro"><font face="papyrus" size="5"><big><b>To contribute to our community, please</b></big></font></p>
+      </header>
+     <div class="enter" style="margin-top:30px">
+        <a href="{{ url_for('login_get') }}"><input type="button" value="Login" style="width:150px;height:50px; background-color: #000000;"><font face="Times New Roman"></font></button></a>
+        <p style="margin-top:10px"><big>or</big></p>
+        <a href="{{ url_for('signup_get') }}"><input type="button" value="Sign Up" style="width:150px;height:50px; background-color: #000000;"><font face="Times New Roman"></font></button></a>
+     </div>
+     {%endif%}
+  </center>
+  </body>
+</div>
+
+{% endblock %}

@@ -1,0 +1,84 @@
+{% import "macros.html" as macros %}
+{% extends "base.html" %}
+{% block content %}
+{% for post in posts %}
+{{ macros.render_entry(post, name, authenticate, user_likes) }}
+{% endfor %}
+
+{% if empty %}
+<p>&nbsp</p>
+<h4 style="text-align: center;"><i><b>There are currently no posts in this section.</b></i></h6>
+{% endif %}
+
+<ul class="pager">
+    {% if has_next %}
+    <li class="previous" >
+    {% if post.ethnic_region=="American"%}
+    <a href="{{ url_for('american_tab', page=page + 1) }}">&larr; Next</a>
+    
+    {% elif post.ethnic_region=="Asian"%}
+    <a href="{{ url_for('asian_tab', page=page + 1) }}">&larr; Next</a>
+    
+    {% elif post.ethnic_region=="Greek"%}
+    <a href="{{ url_for('greek_tab', page=page + 1) }}">&larr; Next</a>
+    
+    {% elif post.ethnic_region=="French"%}
+    <a href="{{ url_for('french_tab', page=page + 1) }}">&larr; Next</a>
+    
+    {% elif post.ethnic_region=="Thai"%}
+    <a href="{{ url_for('thai_tab', page=page + 1) }}">&larr; Next</a>
+    
+    {% elif post.ethnic_region=="Mediterranean"%}
+    <a href="{{ url_for('mediterranean_tab', page=page + 1) }}">&larr; Next</a>
+    
+    {% elif post.ethnic_region=="Italian"%}
+    <a href="{{ url_for('italian_tab', page=page + 1) }}">&larr; Next</a>
+    
+    {% elif post.ethnic_region=="Indian"%}
+    <a href="{{ url_for('indian_tab', page=page + 1) }}">&larr; Next</a>
+    
+    {% elif post.ethnic_region=="Mexican"%}
+    <a href="{{ url_for('mexican_tab', page=page + 1) }}">&larr; Next</a>
+    
+    {% elif post.ethnic_region=="Other"%}
+    <a href="{{ url_for('other_tab', page=page + 1) }}">&larr; Next</a>
+    </li>
+    {% endif %}
+    {% endif %}
+    
+    {% if has_prev %}
+    <li class="next">
+    {% if post.ethnic_region=="American"%}
+    <a href="{{ url_for('american_tab', page=page - 1) }}">&larr; Previous</a>
+    
+    {% elif post.ethnic_region=="Asian"%}
+    <a href="{{ url_for('asian_tab', page=page - 1) }}">&larr; Previous</a>
+    
+    {% elif post.ethnic_region=="Greek"%}
+    <a href="{{ url_for('greek_tab', page=page - 1) }}">&larr; Previous</a>
+    
+    {% elif post.ethnic_region=="French"%}
+    <a href="{{ url_for('french_tab', page=page - 1) }}">&larr; Previous</a>
+    
+    {% elif post.ethnic_region=="Thai"%}
+    <a href="{{ url_for('thai_tab', page=page - 1) }}">&larr; Previous</a>
+    
+    {% elif post.ethnic_region=="Mediterranean"%}
+    <a href="{{ url_for('mediterranean_tab', page=page - 1) }}">&larr; Previous</a>
+    
+    {% elif post.ethnic_region=="Italian"%}
+    <a href="{{ url_for('italian_tab', page=page - 1) }}">&larr; Previous</a>
+    
+    {% elif post.ethnic_region=="Indian"%}
+    <a href="{{ url_for('indian_tab', page=page - 1) }}">&larr; Previous</a>
+    
+    {% elif post.ethnic_region=="Mexican"%}
+    <a href="{{ url_for('mexican_tab', page=page - 1) }}">&larr; Previous</a>
+
+    {% elif post.ethnic_region=="Other"%}
+    <a href="{{ url_for('other_tab', page=page - 1) }}">&larr; Previous</a>
+    </li>
+    {% endif %}
+    {% endif %}
+</ul>
+{% endblock %}

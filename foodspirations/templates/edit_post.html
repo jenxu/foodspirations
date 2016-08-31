@@ -1,0 +1,91 @@
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+        <title>Foodspirations</title>
+
+        <!-- CSS -->
+        <!-- Bootstrap -->
+        <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+        <!-- Blog -->
+        <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+
+        <!-- JavaScript -->
+        <!-- jQuery -->
+        <script src="http://code.jquery.com/jquery-2.1.1.min.js"></script>
+        <!-- Bootstrap -->
+        <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    </head>
+
+    <body>
+        <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="{{ url_for('homepage') }}">Foodspirations</a>
+                </div>
+                <div class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav navbar-right">
+                    </ul>
+                </div>
+            </div>
+        </div>
+            {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+            {% for category, message in messages %}
+            <div class="alert alert-{{ category }}">
+                {{ message }}
+            </div>
+            {% endfor %}
+            {% endif %}
+            {% endwith %}
+        <div class="container">
+            <h1>
+                Edit Post
+            </h1>
+            
+            <form role="form" method="POST" enctype=multipart/form-data>
+                <div class="form-group">
+                    <label for="name">Name of Dish:</label>
+                    <textarea class="form-control" id="name" name="name" rows="1" required>{{post.name}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="file">Change Photo:</label>
+                        <p><input type=file name=file id="pic_filename">
+                </div>
+                <div class="form-group">
+                    <label for="ethnic_region">Ethnic Region:</label>
+                        <select class = "form-control" name = "ethnic_region" id="ethnic_region">
+                          <option value="{{post.ethnic_region}}">{{post.ethnic_region}}</option>
+                          <option value="American">American</option>
+                          <option value="Asian">Asian</option>
+                          <option value="Greek">Greek</option>
+                          <option value="French">French</option>
+                          <option value="Thai">Thai</option>
+                          <option value="Mediterranean">Mediterranean</option>
+                          <option value="Italian">Italian</option>
+                          <option value="Indian">Indian</option>
+                          <option value="Mexican">Mexican</option>
+                          <option value="Other">Other</option>
+                        </select>
+                </div>
+                <div class="form-group">
+                    <label for="ingredients">Ingredients:</label>
+                    <textarea class="form-control" id="ingredients" name="ingredients" placeholder="Flour, Eggs, Sugar..." rows="10" required>{{post.ingredients}}</textarea>
+                </div>
+                <div class="form-group">
+                    <label for="steps">Steps:</label>
+                    <textarea class="form-control" id="steps" name="steps" placeholder="Clear Step by Step instructions..." rows="10" required>{{post.steps}}</textarea>
+                </div>
+                <button type="submit" class="btn btn-default">Update Post</button>
+            </form>
+        </div>
+    </body>
+</html>
